@@ -14,7 +14,7 @@ var player_aaaa={"flag":"play","encrypt":0,"trysee":0,"points":0,"link":"\/play\
 ```
 
 # 3
-通过 m3u8 接口查询 url 
+通过 m3u8 接口查询 url   
 https://danmu.yhdmjx.com/m3u8.php?url=
 
 # 4
@@ -35,7 +35,7 @@ var config = {
 ```
 
 # 5
-将 getVideoInfo 参数解码得到原始播放地址
+将 getVideoInfo 参数解码得到原始播放地址    
 http://v16m-default.akamaized.net/a2ad617d1cbd1f095d6f728ae642a62f/65a29111/video/tos/alisg/tos-alisg-ve-0051c001-sg/owBvflpBc2uEDwFNSxIsbAAQBngfIQnaO2mQkD/?a=2011&ch=0&cr=0&dr=0&net=5&cd=0%7C0%7C0%7C0&br=4782&bt=2391&bti=MzhALjBg&cs=0&ds=4&ft=XE5bCqT0mmjPD126UM7R3wU7C1JcMeF~O5&mime_type=video_mp4&qs=0&rc=Nmk5aDQ7aWc4Z2hlaDw4aEBpM3I2OG05cjc8cDMzODYzNEAvYGIzNTJjNS8xL2AvYF8zYSNmanBrMmQ0a2FgLS1kMC1zcw%3D%3D&l=20240113070922599908F5AA178D8BB8EA&btag=e000a8000
 
 # 参考
