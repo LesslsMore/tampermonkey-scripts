@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>樱花动漫播放器</title>
+    <meta name="description" content="免费视频弹幕播放器，这里有最及时的动漫，最棒的ACG氛围，最有创意的Up主。大家可以在这里找到许多欢乐。">
+    <meta name="keywords"
+          content="Bilibili,哔哩哔哩,哔哩哔哩动画,哔哩哔哩弹幕网,弹幕视频,B站,弹幕,字幕,AMV,MAD,MTV,ANIME,追新番,新番动漫,新番吐槽,巡音,镜音双子,千本樱,初音MIKU,舞蹈MMD,MIKUMIKUDANCE,洛天依原创曲,洛天依翻唱曲,洛天依投食歌,洛天依MMD,vocaloid家族,OST,BGM,动漫歌曲,日本动漫音乐,宫崎骏动漫音乐,动漫音乐推荐,燃系mad,治愈系mad,MAD MOVIE,MAD高燃">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="renderer" content="webkit"> <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="theme-color" content="#de698c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <script type="text/javascript" src="https://cdn.yinghuazy.xyz/js/aes.js"></script>
+    <script>var bt_token = "b2cab6d443ac5b5b"; </script>
+    <script language=javascript src="./js/play.js"></script>
+	<script>var btjson_ver = "1.0.7"; </script>
+	<script>var videos_type = "auto"; </script>
+    <meta name="referrer" content="never"><link rel="stylesheet" href="/css/btjsonplayer.min.css"><script src='./js/ver.js?rnd=b2cab6d443ac5b5b'></script><script type="text/javascript" type="text/javascript" src="https://cdn.yinghuazy.xyz/js/js/flv.min.js"></script></head>
+<body>
+<div id="player" style="position:absolute;left:0px;top:0px;"></div>
+<div id="ADplayer" style="position:absolute;left:0px;top:0px;"></div>
+<div id="ADtip" style="position:absolute;left:0px;top:0px;"></div>
+<script>
+var up = {
+    "ServerApi": "//danmu.yhdmjx.com",//服务器域名配置
+    "ServerKey": "yhdm",//应用密钥
+	"mylink":"https://danmu.yhdmjx.com",//
+	"diyid":[0,"lele",1]//自定义弹幕id
+	}
+var config = {
+    "id": "20e9d1ba9fe5a6e29c9cd04a1ec04b42",
+	"api":"//danmu.yhdmjx.com",//弹幕接口   前面架设自己的域名 防止后台弹幕库报错    例如   https://www.baidu.co
+	"key": "yhdm",//应用KEY码,如果不填将获取全部弹幕信息(填写后指定应用弹幕)
+	"url": getVideoInfo("XmTE2MJB0GifUP4WEsdwFAyp2DTuCEBxA2Ji5Qf8Q8oRTw3QWzQTZM17B6KJMWL1Xd0pKZYaQJOcEvLNoKIRLiEOaINN4UfzaeYK/flXWgeVzp15Ub9MgfwXSXoDqV35Xy0+hHY1mKwYXOXHMTuVQ7m38Nk+tE6xdmxBgfNKP6ZzJ2sJM8qiNj6dUtNuqnx55qhACKUD+mZn+I47OJd9I2S/SwqHvz3plzwHTtrrSKrzPf1rAaY/roJdIKWRfIxEjub1kIny3BlS47qEOanQB267jg6wtRea9SJeP57rbwq55e4d1pC8GmL4d8HaZUtwC7eNthxGAbqNN8rmUMr4PFNpqksvjGr5zDBAZr2CnNsCcd5mPrKz63OG3kneuGEVX3ESnqM83Lg8xYeRqX8XLBZkS6F32OlnO+JtVEOz1F7+gRQ/ZfdzH0+wFXDbCO24vcXxCgo42dKdU/GBsP2FSiIibK3P8U6ETIAGU+95QJE2JO57SfeT9hSvw/JUGiXXRG2FfLiVRg9ocNDZcUCHOpDqpBplVpwil3yvr40jz9LXjDxRF9KhQCwgRtmiPqacAPRuOoKG3BtSKA49bdj8zmAhLGFyWJ3ChOJRiFtl+wE="),//视频链接
+	"sid":"",//集数id
+	"pic":"",//视频封面
+	"title":"",//视频标题
+	"next":"",//下一集链接
+	"user": "",//用户名
+	"group": "",//用户组
+	}
+lele.start()
+</script><script src="https://cdn.yinghuazy.xyz/js/main.js"></script>
+</body>
+
+
+
+<span style="display:none"></span><!--统计代码https://js.users.51.la/21023305.js自己替换成自己的即可-->
+
+<!--
+<script>
+function adCheck(){
+ var myDate = new Date();
+ var aaa=myDate.getHours();
+ if(parseInt(aaa)>=1 && parseInt(aaa)<=5 ){  //投放时间设置（默认是凌晨1点到早上5点，根据自己的需求自己修改）
+   return true;
+ }else{
+   return false;
+ }
+}
+ if(adCheck()){
+document.writeln('<script type="text/javascript" charset="UTF-8" async src="广告联盟js"><\/script>');//此处广告联盟js是放你广告联盟获取的js链接
+ }
+ </script>
+-->
+
+</html>
