@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <title>ArtPlayer Demo</title>
+        <meta charset="UTF-8" />
+        <style>
+            .artplayer-app {
+                width: 400px;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="artplayer-app"></div>
+    </body>
+    <script src="https://unpkg.com/artplayer/dist/artplayer.js"></script>
+    <script src="https://unpkg.com/artplayer-plugin-danmuku/dist/artplayer-plugin-danmuku.js"></script>
+    <script>
+        function getMode(key) {
+            switch (key) {
+                case 1:
+                case 2:
+                case 3:
+                    return 0;
+                case 4:
+                case 5:
+                    return 1;
+                default:
+                    return 0;
+            }
+        }
+
+        function bilibiliDanmuParseFromXml(xmlString) {
+            if (typeof xmlString !== 'string') return [];
+            const matches = xmlString.matchAll(/<d (?:.*? )??p="(?<p>.+?)"(?: .*?)?>(?<text>.+?)<\/d>/gs);
+            return Array.from(matches)
+                .map((match) => {
+                    const attr = match.groups.p.split(',');
+                    if (attr.length >= 8) {
+                        const text = match.groups.text
+                            .trim()
+                            .replaceAll('&quot;', '"')
+                            .replaceAll('&apos;', "'")
+                            .replaceAll('&lt;', '<')
+                            .replaceAll('&gt;', '>')
+                            .replaceAll('&amp;', '&');
+
+                        return {
+                            text,
+                            time: Number(attr[0]),
+                            mode: getMode(Number(attr[1])),
+                            fontSize: Number(attr[2]),
+                            color: `#${Number(attr[3]).toString(16)}`,
+                            timestamp: Number(attr[4]),
+                            pool: Number(attr[5]),
+                            userID: attr[6],
+                            rowID: Number(attr[7]),
+                        };
+                    } else {
+                        return null;
+                    }
+                })
+                .filter(Boolean);
+        }
+
+        var art = new Artplayer({
+            container: '.artplayer-app',
+            url: 'http://v16m-default.akamaized.net/c55227cd27c7c6f233553f59657f6b13/65a40410/video/tos/alisg/tos-alisg-ve-0051c001-sg/os58hXz3AHFbXM21IeIDRe3skfQGMLFgAqCyQ7/?a=2011&ch=0&cr=0&dr=0&net=5&cd=0%7C0%7C0%7C0&br=4018&bt=2009&bti=MzhALjBg&cs=0&ds=4&ft=XE5bCqT0mmjPD12Rn47R3wU7C1JcMeF~O5&mime_type=video_mp4&qs=0&rc=ZmloNjk4aTc0Nzc6Zzw5ZUBpandmdXg5cnRqcDMzODYzNEA1NC5fXi0xNl8xYC4wLS82YSNjL2tvMmQ0cGBgLS1kMC1zcw%3D%3D&l=2024011409321794C334830C14F527F547&btag=e000a8000',
+            // url: 'http://127.0.0.1:8000/0-PT/%5BANi%5D%20%E6%86%A7%E6%86%AC%E6%88%90%E7%82%BA%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%20%5B%E5%B9%B4%E9%BD%A1%E9%99%90%E5%88%B6%E7%89%88%5D%20-%2001%20%5B1080P%5D%5BBaha%5D%5BWEB-DL%5D%5BAAC%20AVC%5D%5BCHT%5D.mp4',
+            autoSize: true,
+            fullscreen: true,
+            fullscreenWeb: true,
+            autoOrientation: true,
+            flip: true,
+            playbackRate: true,
+            aspectRatio: true,
+            setting: true,
+            plugins: [
+                artplayerPluginDanmuku({
+                    // danmuku: 'http://127.0.0.1:5501/%5BANi%5D%20%E6%86%A7%E6%86%AC%E6%88%90%E7%82%BA%E9%AD%94%E6%B3%95%E5%B0%91%E5%A5%B3%20%5B%E5%B9%B4%E9%BD%A1%E9%99%90%E5%88%B6%E7%89%88%5D%20-%2001%20%5B1080P%5D%5BBaha%5D%5BWEB-DL%5D%5BAAC%20AVC%5D%5BCHT%5D.xml',
+                    // danmuku: 'https://comment.bilibili.com/1372940775.xml',
+                    speed: 5, // 弹幕持续时间，单位秒，范围在[1 ~ 10]
+                    opacity: 1, // 弹幕透明度，范围在[0 ~ 1]
+                    fontSize: 25, // 字体大小，支持数字和百分比
+                    color: '#FFFFFF', // 默认字体颜色
+                    mode: 0, // 默认模式，0-滚动，1-静止
+                    margin: [10, '25%'], // 弹幕上下边距，支持数字和百分比
+                    antiOverlap: true, // 是否防重叠
+                    useWorker: true, // 是否使用 web worker
+                    synchronousPlayback: false, // 是否同步到播放速度
+                    filter: (danmu) => danmu.text.length < 50, // 弹幕过滤函数，返回 true 则可以发送
+                    lockTime: 5, // 输入框锁定时间，单位秒，范围在[1 ~ 60]
+                    maxLength: 100, // 输入框最大可输入的字数，范围在[0 ~ 500]
+                    minWidth: 200, // 输入框最小宽度，范围在[0 ~ 500]，填 0 则为无限制
+                    maxWidth: 600, // 输入框最大宽度，范围在[0 ~ Infinity]，填 0 则为 100% 宽度
+                    theme: 'light', // 输入框自定义挂载时的主题色，默认为 dark，可以选填亮色 light
+                    heatmap: true, // 是否开启弹幕热度图, 默认为 false
+                    beforeEmit: (danmu) => !!danmu.text.trim(), // 发送弹幕前的自定义校验，返回 true 则可以发送
+
+                    // 通过 mount 选项可以自定义输入框挂载的位置，默认挂载于播放器底部，仅在当宽度小于最小值时生效
+                    // mount: document.querySelector('.artplayer-danmuku'),
+                }),
+            ],
+            controls: [
+                {
+                    position: 'right',
+                    html: '上传弹幕',
+                    click: function () {
+                        const input = document.createElement("input");
+                        input.type = "file";
+                        input.accept = "text/xml";
+                        input.addEventListener("change", () => {
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                                // console.log(reader)
+                                const xml = reader.result;
+                                // console.log(xml)
+                                let dm = bilibiliDanmuParseFromXml(xml)
+                                // console.log(dm)
+                                art.plugins.artplayerPluginDanmuku.config({
+                                    danmuku: dm,
+                                });
+                                art.plugins.artplayerPluginDanmuku.load();
+                            };
+                            reader.readAsText(input.files[0]);
+                        });
+                        input.click();
+
+
+                    },
+                },
+            ],
+        });
+
+        // 监听手动输入的弹幕，保存到数据库
+        art.on('artplayerPluginDanmuku:emit', (danmu) => {
+            console.info('新增弹幕', danmu);
+        });
+
+        // 监听加载到的弹幕数组
+        art.on('artplayerPluginDanmuku:loaded', (danmus) => {
+            console.info('加载弹幕', danmus.length);
+        });
+
+        // 监听加载到弹幕的错误
+        art.on('artplayerPluginDanmuku:error', (error) => {
+            console.info('加载错误', error);
+        });
+
+        // 监听弹幕配置变化
+        art.on('artplayerPluginDanmuku:config', (option) => {
+            console.info('配置变化', option);
+        });
+
+        // 监听弹幕停止
+        art.on('artplayerPluginDanmuku:stop', () => {
+            console.info('弹幕停止');
+        });
+
+        // 监听弹幕开始
+        art.on('artplayerPluginDanmuku:start', () => {
+            console.info('弹幕开始');
+        });
+
+        // 监听弹幕隐藏
+        art.on('artplayerPluginDanmuku:hide', () => {
+            console.info('弹幕隐藏');
+        });
+
+        // 监听弹幕显示
+        art.on('artplayerPluginDanmuku:show', () => {
+            console.info('弹幕显示');
+        });
+
+        // 监听弹幕销毁
+        art.on('artplayerPluginDanmuku:destroy', () => {
+            console.info('弹幕销毁');
+        });
+
+
+    </script>
+</html>
