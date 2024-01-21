@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Bilibili 合集进度显示
 // @namespace    https://github.com/LesslsMore/tampermonkey-scripts/tree/master/bili_progress_show
-// @version      0.1.0
-// @description  显示合集整体观看进度，方便掌控学习进度，合理安排学习时间。
+// @version      0.1.1
+// @description  显示当前观看总时长 / 合集总时长，以及进度比例。
 // @author       lesslsmore
 // @license      MIT
 // @match        *://*.bilibili.com/*

@@ -4,7 +4,5 @@
 
 ![Alt text](bili_progress_show.png)
 
-![Alt text](https://github.com/LesslsMore/bili-part-video-search/blob/master/src/image.png?raw=true)
-
 ### 油猴脚本地址
 https://greasyfork.org/zh-CN/scripts/484122
