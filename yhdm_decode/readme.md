@@ -51,4 +51,4 @@ player_aaaa.url
 ```
 
 # 参考
-https://agsec.org/archives/205
+[js逆向分析-某樱花动漫获取视频地址](https://agsec.org/archives/205)
